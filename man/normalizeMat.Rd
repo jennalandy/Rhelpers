@@ -4,12 +4,12 @@
 \alias{normalizeMat}
 \title{Normalize a matrix such that columns or rows sum to 1}
 \usage{
-normalizeMat(mat, across = "cols")
+normalizeMat(mat, sum = "cols")
 }
 \arguments{
 \item{mat}{input matrix}
 
-\item{across}{one of c('cols','rows')}
+\item{sum}{one of c('cols','rows')}
 }
 \value{
 normalized matrix
