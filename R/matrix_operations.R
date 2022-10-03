@@ -23,6 +23,51 @@ normalizeMat <- function(mat, across = 'cols') {
     mat <- mat/rowsums_mat
     return(mat)
   } else {
-    stop('`across` must be one of c("col","rows"')
+    stop('`across` must be one of c("cols","rows"')
   }
 }
+
+#' Multiply a vector to each row or column of a matrix
+#'
+#' @param mat matrix
+#' @param vec vector to multiply matrix by
+#' @param across one of c("cols", "rows")
+#'
+#' @return matrix with each row or column multiplied by input vector
+#' @export
+multiplyAcross <- function(mat, vec, across = 'cols') {
+  stopifnot(
+    is.vector(vec),
+    length(vec) > 0,
+    is.numeric(vec[0]),
+    is.numeric(mat)
+  )
+  if (across == 'rows') {
+    stopifnot(length(vec) == ncol(mat))
+
+    mat <- mat*matrix(
+      rep(vec,nrow(mat)),
+      ncol = ncol(mat),
+      byrow = TRUE
+    )
+    return(mat)
+
+  } else if (across == 'cols') {
+    stopifnot(length(vec) == nrow(mat))
+
+    mat <- mat*matrix(
+      rep(vec,ncol(mat)),
+      ncol = ncol(mat),
+      byrow = FALSE
+    )
+    return(mat)
+
+  } else {
+    stop('`across` must be one of c("cols","rows")')
+  }
+}
+
+
+
+
+
