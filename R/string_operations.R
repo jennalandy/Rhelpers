@@ -6,8 +6,6 @@
 #'
 #' @return a vector of strings
 #' @export
-#'
-#' @examples
 str_split_vec <- function(vec, pattern, i) {
   stopifnot(is.vector(vec),
             length(vec) > 0,
